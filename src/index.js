@@ -19,7 +19,7 @@ app.use(routes)
 
 
 
-app.listen(3333)
+app.listen(3333 || process.env.PORT)
 
 
 // Tipos de Parâmetros:
