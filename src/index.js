@@ -4,7 +4,7 @@ const routes = require('./routes')
 const cors = require('cors')
 
 
-mongoose.connect("mongodb+srv://client:clientpass@cluster0-p3rsy.mongodb.net/week10?retryWrites=true&w=majority",
+mongoose.connect(`${process.env.MONGO_URL}`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
