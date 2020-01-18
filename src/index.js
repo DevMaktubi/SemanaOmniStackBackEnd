@@ -1,9 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const routes = require('./routes')
+const http = require('http')
 const cors = require('cors')
+const {setupWebSocket} = require('./websocket')
 require('dotenv').config()
 
+const app = express();
+const server = http.Server(app)
+
+setupWebSocket(server)
 
 mongoose.connect(`${process.env.MONGO_URL}`,
   {
@@ -12,7 +18,7 @@ mongoose.connect(`${process.env.MONGO_URL}`,
   }
 )
 
-const app = express();
+
 
 app.use(cors())
 app.use(express.json())
@@ -20,7 +26,7 @@ app.use(routes)
 
 const porta = process.env.PORT || 3333
 
-app.listen(porta)
+server.listen(porta)
 
 
 // Tipos de Parâmetros:
